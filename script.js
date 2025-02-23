@@ -1,6 +1,6 @@
 // ИСХОДНЫЕ ДАННЫЕ НЕ ТРОГАТЬ!*
 
-let discount = prompt("Какая скидка?");
+let discount = prompt("Какая скидка?");
 
 let totalSale = Number;
 
@@ -26,7 +26,7 @@ let arr = [
   },
 
   {
-    name: "Ice Cream",
+    name: "Ice Cream",
 
     price: 7.85,
   },
@@ -63,45 +63,30 @@ let arr_sale = [];
 // ТРИ ОЦЕНКИ. ЧИСТОТА КОДА, ЛОГИКА РАБОТЫ, УНИКАЛЬНОСТЬ КОДА*
 
 const setup = () => {
-    discount = Number(discount) || 0;
+  discount = Number(discount) || 0;
 
-    // 1
-    max = arr[0];
-    for (let item of arr) {
-        if (item.price > max.price) {
-            max = item;
-        }
-    }
+  max = arr[0];
+  min = arr[0];
+  total = 0;
+  arr_sale = [];
 
-    // 2
-    min = arr[0];
-    for (let item of arr) {
-        if (item.price < min.price) {
-            min = item;
-        }
-    }
+  for (let i = 0; i < arr.length; i++) {
+      let item = arr[i];
+      if (item.price > max.price) max = item;
+      if (item.price < min.price) min = item;
+      total += item.price;
+      arr_sale.push({ name: item.name, price: item.price * (1 - discount / 100) });
+  }
 
-    // 3
-    total = 0;
-    for (let item of arr) {
-        total += item.price;
-    }
+  totalSale = total * (1 - discount / 100);
+  average = total / arr.length;
 
-    // 4
-    totalSale = total * (1 - discount / 100);
-
-    // 5
-    arr_sale = [];
-    for (let item of arr) {
-        arr_sale.push({
-            name: item.name,
-            price: item.price * (1 - discount / 100),
-        });
-    }
-
-    // 6
-    average = total / arr.length;
+  console.log(max);
+  console.log(min);
+  console.log(total);
+  console.log(totalSale);
+  console.log(average);
+  console.log(arr_sale);
 };
-
 
 setup();
