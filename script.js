@@ -1,92 +1,134 @@
-// ИСХОДНЫЕ ДАННЫЕ НЕ ТРОГАТЬ!*
+// *// ИСХОДНЫЕ ДАННЫЕ НЕ ТРОГАТЬ!*
 
-let discount = prompt("Какая скидка?");
+let discount = +prompt('Какая скидка?')
 
-let totalSale = Number;
+let totalSale = 0
 
-let total = Number;
+let total = 0
 
-let max = Object;
+let max = {}
 
-let min = Object;
+let min = {}
 
-let average = Number;
+let average = 0
 
 let arr = [
-  {
-    name: "Milk",
 
-    price: 3.25,
-  },
+    {
 
-  {
-    name: "Coffee",
+        name: 'Milk',
 
-    price: 1.5,
-  },
+        price: 3.25
 
-  {
-    name: "Ice Cream",
+    },
 
-    price: 7.85,
-  },
+    {
 
-  {
-    name: "Tomatos",
+        name: 'Coffee',
 
-    price: 4.14,
-  },
+        price: 1.5
 
-  {
-    name: "Onion",
+    },
 
-    price: 2.25,
-  },
-];
+    {
 
-let arr_sale = [];
+        name: 'Ice Cream',
 
-// 1. Сохранить самый дорогой товар в переменную`max`*
+        price: 7.85
 
-// 2. Сохранить самый дешевый товар в переменную`min`*
+    },
 
-// 3. Сохранить общую цену без скидок в переменную`total`*
+    {
 
-// 4. Сохранить общую цену со скидкой в переменную`totalSale`*
+        name: 'Tomatos',
 
-// 5. Сохранить элементы из массива arr с обновленной ценой (цена со скидкой) в переменную `arr_sale`*
+        price: 4.14
 
-// 6. Сохранить в переменной`average` среднюю цену всех продуктов без скидок*
+    },
 
-// * Писать весь код в функции `setup()`*
+    {
 
-// ТРИ ОЦЕНКИ. ЧИСТОТА КОДА, ЛОГИКА РАБОТЫ, УНИКАЛЬНОСТЬ КОДА*
+        name: 'Onion',
+
+        price: 2.25
+
+    }
+
+]
+
+let arr_sale = []
+
+
+// *// 1. Сохранить самый дорогой товар в переменную`max`*
+
+// *// 2. Сохранить самый дешевый товар в переменную`min`*
+
+// *// 3. Сохранить общую цену без скидок в переменную`total`*
+
+// *// 4. Сохранить общую цену со скидкой в переменную`totalSale`*
+
+// *// 5. Сохранить элементы из массива arr с обновленной ценой (цена со скидкой) в переменную `arr_sale`*
+
+// *// 6. Сохранить в переменной`average` среднюю цену всех продуктов без скидок*
+
+// *// * Писать весь код в функции `setup()`*
+
+// *// ТРИ ОЦЕНКИ. ЧИСТОТА КОДА, ЛОГИКА РАБОТЫ, УНИКАЛЬНОСТЬ КОДА*
 
 const setup = () => {
-  discount = Number(discount) || 0;
+    
+    // 1
+    total = 0;
+    max = {
+         price : 0 
+        };
+    
+  
+    // 2
 
-  max = arr[0];
-  min = arr[0];
-  total = 0;
-  arr_sale = [];
+    min = { price : Infinity }
 
-  for (let i = 0; i < arr.length; i++) {
-      let item = arr[i];
-      if (item.price > max.price) max = item;
-      if (item.price < min.price) min = item;
-      total += item.price;
-      arr_sale.push({ name: item.name, price: item.price * (1 - discount / 100) });
-  }
+   
+    arr_sale = []
 
-  totalSale = total * (1 - discount / 100);
-  average = total / arr.length;
+    // 3
+    arr.forEach(item => {
+        if (item.price > max.price) {
+            max = item;
+        }
 
-  console.log(max);
-  console.log(min);
-  console.log(total);
-  console.log(totalSale);
-  console.log(average);
-  console.log(arr_sale);
-};
+        else if(item.price < min.price) {
+            min = item;
+        }
 
-setup();
+        total += item.price
+    })
+    
+    // 4 
+
+    // totalSale = total - total * (discount / 100)
+
+   
+
+    // 5 
+    arr_sale = arr.map(item => ({
+        ...item,
+        salePrice: item.price - item.price * (discount / 100)
+        
+    }))
+
+    // 6 
+    average = total / arr.length;
+    
+
+    // console
+    console.log(max);
+    console.log(min);
+    console.log(total);
+    console.log(arr_sale);
+    console.log(average);
+
+
+}
+
+setup()
